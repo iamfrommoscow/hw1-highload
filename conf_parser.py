@@ -24,3 +24,8 @@ def parseConfigFile(path):
 
 
     return confDict
+
+
+
+
+# ab -n 100000 -c 100 http://localhost:80/httptest/wikipedia_russia.html

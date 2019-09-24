@@ -71,10 +71,8 @@ class Worker:
                 response = self.response.createResponse(404, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')])
                 await self.write(client, response)
             else:
-                headers = [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')]
-                headers.append(('Content-Length', str(os.path.getsize(file_path))))
                 mime_type, _ = mimetypes.guess_type(file_path)
-                headers.append(('Content-Type', mime_type))
+                headers = [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close'), ('Content-Length', str(os.path.getsize(file_path))),('Content-Type', mime_type) ]
 
                 response = self.response.createResponse(200, headers)
 
