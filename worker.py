@@ -43,11 +43,13 @@ class Worker:
         file_path = os.path.abspath(os.path.join(self.document_root, self.request_parser.path))
         file_path = unquote(file_path)
 
+
         if self.document_root not in file_path:
             response = self.response.createResponse(403, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')])
             await self.write(client, response)
             client.close()
             return
+
 
         wrong_slash = (not file_path.endswith('/')) and self.request_parser.path.endswith('/')
 
@@ -60,11 +62,10 @@ class Worker:
         if not os.path.exists(file_path):
 
             if index_added:
-                response = self.response.createResponse(403, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')])
+                await self.write(client, self.response.createResponse(403, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')]))
             else:
-                response = self.response.createResponse(404, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')])
+                await self.write(client, self.response.createResponse(404, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')]))
 
-            await self.write(client, response)
         else:
             if wrong_slash and not index_added:
                 response = self.response.createResponse(404, [('Date', datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),('Server', 'HW1Highload'),('Connection', 'close')])

@@ -4,7 +4,6 @@ RUN apt-get update
 RUN pip install uvloop
 
 ADD . /var/www/hw1
-ADD ./httpd.conf /etc/httpd.conf
 
 WORKDIR /var/www/hw1
 

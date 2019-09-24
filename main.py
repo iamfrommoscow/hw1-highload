@@ -24,11 +24,11 @@ def main():
     processes = []
     try:
         for number_of_process in range(config['cpu_limit']):
-            print('WORKER {} START'.format(number_of_process))
+
             process = Process(target=createWorker, args=(socket_connection, config['document_root']))
             processes.append(process)
             process.start()
-
+        print('{} WORKERS STARTED'.format(config['cpu_limit']))
         for process in processes:
             process.join()
 

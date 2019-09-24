@@ -18,9 +18,7 @@ class Response:
         return 'HTTP/1.1 {} {}'.format(status_code, reason)
 
     def createHeaders(self, header_pairs):
-        print(header_pairs)
         headers = ['{}: {}'.format(k, v) for k, v in (header_pairs)]
-        print('\r\n'.join(headers) + '\r\n')
         return '\r\n'.join(headers) + '\r\n'
 
     def createResponse(self, status_code, header_pairs):
