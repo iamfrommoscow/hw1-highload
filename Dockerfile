@@ -10,4 +10,4 @@ WORKDIR /var/www/hw1
 
 EXPOSE 80
 
-CMD python3.7.3 main.py --config-file /etc/httpd.conf
+CMD python3 main.py --config-file /etc/httpd.conf
