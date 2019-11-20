@@ -3,47 +3,6 @@ import re
 rePO = re.compile(r'^(?P<method>[A-Z]+) ((?P<scheme>\w+)://)?(?(3)[^/]*)/?(?P<path>[^\?#]*/?)?(\?[^#]*)?(\#.*)? HTTP/1.[0|1]$')
 
 
-# class RequestLineParser:
-#
-#
-#     def __init__(self):
-#         self.rePO = re.compile(r'^(?P<method>[A-Z]+) ((?P<scheme>\w+)://)?(?(3)[^/]*)/?(?P<path>[^\?#]*/?)?(\?[^#]*)?(\#.*)? HTTP/1.[0|1]$')
-#
-#     def __call__(self, request_line):
-#         if not isinstance(request_line, str):
-#             return False
-#
-#         match = self.rePO.match(request_line)
-#
-#         self.method = match.group('method')
-#
-#         if match.group('scheme') not in [None, 'http', 'https']:
-#             return False
-#
-#         if match.group('path') != '/':
-#             self.path = match.group('path') or 'index.html'
-#         else:
-#             self.path = 'index.html'
-#
-#         return True
-#
-# class RequestHeadersParser:
-#
-#     def __call__(self, request_headers):
-#         if not isinstance(request_headers, list):
-#             return False
-#         self.headers = []
-#         for header in request_headers:
-#             key_value = [x for x in header.split(': ') if x]
-#
-#             if len(key_value) == 2:
-#                 key, value = key_value
-#                 self.headers.append([key.lower(), value])
-#             else:
-#                 return False
-#
-#         return True
-
 class RequestParser:
 
     # def __init__(self):

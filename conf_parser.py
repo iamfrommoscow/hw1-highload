@@ -17,15 +17,9 @@ def parseConfigFile(path):
     confDict = {}
     confDict['cpu_limit'] = config.getint('main', 'cpu_limit')
     confDict['document_root'] = config.get('main', 'document_root')
-    # confDict['host'] = config.get('main', 'host')
-    # confDict['port'] = config.getint('main', 'port')
-    confDict['host'] = '0.0.0.0'
-    confDict['port'] = 80
+    confDict['host'] = config.get('main', 'host')
+    confDict['port'] = config.getint('main', 'port')
+
 
 
     return confDict
-
-
-
-
-# ab -n 100000 -c 100 http://localhost:80/httptest/wikipedia_russia.html

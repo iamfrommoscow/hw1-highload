@@ -88,13 +88,22 @@ class Worker:
         return (await self.loop.sock_recv(client, SOCKET_BUFFER_SIZE)).decode('utf-8')
 
     async def write(self, client, response, filepath = None):
-        await self.loop.sock_sendall(client, str(response).encode('utf-8'))
+        try:
+            await self.loop.sock_sendall(client, str(response).encode('utf-8'))
 
-        if filepath is not None:
-            while True:
-                line = filepath.read(1024)
+            if filepath is not None:
+                while True:
+                    line = filepath.read(1024)
 
-                if not line:
-                    return
+                    if not line:
+                        return
 
-                await self.loop.sock_sendall(client, line)
+                    await self.loop.sock_sendall(client, line)
+        
+        except Exception:
+            print('exception')
+
+
+
+        
+        

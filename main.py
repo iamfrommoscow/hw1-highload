@@ -8,7 +8,7 @@ def newSocketConnection(host='0.0.0.0', port = 80):
     print('host: ', host, ' port: ', port)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
-    s.listen(8)
+    s.listen(512)
     s.setblocking(False)
     return s
 
